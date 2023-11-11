@@ -13,26 +13,25 @@ public class Board {
     }
 
     public Boolean isInFavorOfX() {
-        Board board = new Board(matrix);
-        for (int i = 0; i < board.matrix.length; i++){
-            for(int j = 0; j < board.matrix[i].length; j++){
-                if(board.matrix[0][1] == 'X' && board.matrix[1][1] == 'X' && board.matrix[2][1] =='X'){
-                return true;
-                } else if (board.matrix[0][0] == 'X' && board.matrix[1][0] == 'X' && board.matrix[2][0] =='X') {
+        for (Character[] characters : this.matrix) {
+            for (int j = 0; j < characters.length; j++) {
+                if (this.matrix[0][1] == 'X' && this.matrix[1][1] == 'X' && this.matrix[2][1] == 'X') {
                     return true;
-                }else if (board.matrix[0][2] == 'X' && board.matrix[1][2] == 'X' && board.matrix[2][2] =='X') {
+                } else if (this.matrix[0][0] == 'X' && this.matrix[1][0] == 'X' && this.matrix[2][0] == 'X') {
                     return true;
-                }else if (board.matrix[0][0] == 'X' && board.matrix[0][1] == 'X' && board.matrix[0][2] =='X') {
+                } else if (this.matrix[0][2] == 'X' && this.matrix[1][2] == 'X' && this.matrix[2][2] == 'X') {
                     return true;
-                }else if (board.matrix[1][0] == 'X' && board.matrix[1][1] == 'X' && board.matrix[1][2] =='X') {
+                } else if (this.matrix[0][0] == 'X' && this.matrix[0][1] == 'X' && this.matrix[0][2] == 'X') {
                     return true;
-                }else if (board.matrix[2][0] == 'X' && board.matrix[2][1] == 'X' && board.matrix[2][2] =='X') {
+                } else if (this.matrix[1][0] == 'X' && this.matrix[1][1] == 'X' && this.matrix[1][2] == 'X') {
                     return true;
-                }else if (board.matrix[0][0] == 'X' && board.matrix[1][1] == 'X' && board.matrix[2][2] =='X') {
+                } else if (this.matrix[2][0] == 'X' && this.matrix[2][1] == 'X' && this.matrix[2][2] == 'X') {
                     return true;
-                }else if (board.matrix[0][2] == 'X' && board.matrix[1][1] == 'X' && board.matrix[2][0] =='X') {
+                } else if (this.matrix[0][0] == 'X' && this.matrix[1][1] == 'X' && this.matrix[2][2] == 'X') {
                     return true;
-                }else {
+                } else if (this.matrix[0][2] == 'X' && this.matrix[1][1] == 'X' && this.matrix[2][0] == 'X') {
+                    return true;
+                } else {
                     break;
                 }
             }
@@ -41,26 +40,25 @@ public class Board {
     }
 
     public Boolean isInFavorOfO() {
-        Board board = new Board(matrix);
-        for (int i = 0; i < board.matrix.length; i++){
-            for(int j = 0; j < board.matrix[i].length; j++){
-                if(board.matrix[0][1] == 'O' && board.matrix[1][1] == 'O' && board.matrix[2][1] =='O'){
+        for (Character[] characters : this.matrix) {
+            for (int j = 0; j < characters.length; j++) {
+                if (this.matrix[0][1] == 'O' && this.matrix[1][1] == 'O' && this.matrix[2][1] == 'O') {
                     return true;
-                } else if (board.matrix[0][0] == 'O' && board.matrix[1][0] == 'O' && board.matrix[2][0] =='O') {
+                } else if (this.matrix[0][0] == 'O' && this.matrix[1][0] == 'O' && this.matrix[2][0] == 'O') {
                     return true;
-                }else if (board.matrix[0][2] == 'O' && board.matrix[1][2] == 'O' && board.matrix[2][2] =='O') {
+                } else if (this.matrix[0][2] == 'O' && this.matrix[1][2] == 'O' && this.matrix[2][2] == 'O') {
                     return true;
-                }else if (board.matrix[0][0] == 'O' && board.matrix[0][1] == 'O' && board.matrix[0][2] =='O') {
+                } else if (this.matrix[0][0] == 'O' && this.matrix[0][1] == 'O' && this.matrix[0][2] == 'O') {
                     return true;
-                }else if (board.matrix[1][0] == 'O' && board.matrix[1][1] == 'O' && board.matrix[1][2] =='O') {
+                } else if (this.matrix[1][0] == 'O' && this.matrix[1][1] == 'O' && this.matrix[1][2] == 'O') {
                     return true;
-                }else if (board.matrix[2][0] == 'O' && board.matrix[2][1] == 'O' && board.matrix[2][2] =='O') {
+                } else if (this.matrix[2][0] == 'O' && this.matrix[2][1] == 'O' && this.matrix[2][2] == 'O') {
                     return true;
-                }else if (board.matrix[0][0] == 'O' && board.matrix[1][1] == 'O' && board.matrix[2][2] =='O') {
+                } else if (this.matrix[0][0] == 'O' && this.matrix[1][1] == 'O' && this.matrix[2][2] == 'O') {
                     return true;
-                }else if (board.matrix[0][2] == 'O' && board.matrix[1][1] == 'O' && board.matrix[2][0] =='O') {
+                } else if (this.matrix[0][2] == 'O' && this.matrix[1][1] == 'O' && this.matrix[2][0] == 'O') {
                     return true;
-                }else {
+                } else {
                     break;
                 }
             }
@@ -72,11 +70,7 @@ public class Board {
         Board board = new Board(matrix);
         if(board.isInFavorOfX()){
             return false;
-        } else if (board.isInFavorOfO()){
-            return false;
-        }else {
-            return true;
-        }
+        } else return !board.isInFavorOfO();
     }
 
     public String getWinner() {
