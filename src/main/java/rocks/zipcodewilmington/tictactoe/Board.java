@@ -6,64 +6,49 @@ import java.lang.reflect.Array;
  * @author leon on 6/22/18.
  */
 public class Board {
-
     Character[][] matrix;
     public Board(Character[][] matrix) {
         this.matrix = matrix;
     }
-
-    public Boolean isInFavorOfX() {
-        for (Character[] characters : this.matrix) {
-            for (int j = 0; j < characters.length; j++) {
-                if (this.matrix[0][1] == 'X' && this.matrix[1][1] == 'X' && this.matrix[2][1] == 'X') {
-                    return true;
-                } else if (this.matrix[0][0] == 'X' && this.matrix[1][0] == 'X' && this.matrix[2][0] == 'X') {
-                    return true;
-                } else if (this.matrix[0][2] == 'X' && this.matrix[1][2] == 'X' && this.matrix[2][2] == 'X') {
-                    return true;
-                } else if (this.matrix[0][0] == 'X' && this.matrix[0][1] == 'X' && this.matrix[0][2] == 'X') {
-                    return true;
-                } else if (this.matrix[1][0] == 'X' && this.matrix[1][1] == 'X' && this.matrix[1][2] == 'X') {
-                    return true;
-                } else if (this.matrix[2][0] == 'X' && this.matrix[2][1] == 'X' && this.matrix[2][2] == 'X') {
-                    return true;
-                } else if (this.matrix[0][0] == 'X' && this.matrix[1][1] == 'X' && this.matrix[2][2] == 'X') {
-                    return true;
-                } else if (this.matrix[0][2] == 'X' && this.matrix[1][1] == 'X' && this.matrix[2][0] == 'X') {
-                    return true;
-                } else {
-                    break;
-                }
+    public boolean checkRow(Character letter){
+        for(int i = 0; i < 3; i++){
+            if(this.matrix[i][0] == letter && this.matrix[i][1] == letter && this.matrix[i][2] == letter){
+                return true;
             }
         }
         return false;
     }
 
-    public Boolean isInFavorOfO() {
-        for (Character[] characters : this.matrix) {
-            for (int j = 0; j < characters.length; j++) {
-                if (this.matrix[0][1] == 'O' && this.matrix[1][1] == 'O' && this.matrix[2][1] == 'O') {
-                    return true;
-                } else if (this.matrix[0][0] == 'O' && this.matrix[1][0] == 'O' && this.matrix[2][0] == 'O') {
-                    return true;
-                } else if (this.matrix[0][2] == 'O' && this.matrix[1][2] == 'O' && this.matrix[2][2] == 'O') {
-                    return true;
-                } else if (this.matrix[0][0] == 'O' && this.matrix[0][1] == 'O' && this.matrix[0][2] == 'O') {
-                    return true;
-                } else if (this.matrix[1][0] == 'O' && this.matrix[1][1] == 'O' && this.matrix[1][2] == 'O') {
-                    return true;
-                } else if (this.matrix[2][0] == 'O' && this.matrix[2][1] == 'O' && this.matrix[2][2] == 'O') {
-                    return true;
-                } else if (this.matrix[0][0] == 'O' && this.matrix[1][1] == 'O' && this.matrix[2][2] == 'O') {
-                    return true;
-                } else if (this.matrix[0][2] == 'O' && this.matrix[1][1] == 'O' && this.matrix[2][0] == 'O') {
-                    return true;
-                } else {
-                    break;
-                }
+    public boolean checkColumn(Character letter){
+        for(int i = 0; i < 3; i++){
+            if(this.matrix[0][i] == letter && this.matrix[1][i] == letter && this.matrix[2][i] == letter){
+                return true;
             }
         }
         return false;
+    }
+
+    public boolean checkDiagonal(Character letter){
+         if (this.matrix[0][0] == letter && this.matrix[1][1] == letter && this.matrix[2][2] == letter) {
+             return true;
+         }else return this.matrix[0][2] == letter && this.matrix[1][1] == letter && this.matrix[2][0] == letter;
+    }
+    public Boolean isInFavorOfX() {
+        if (this.checkRow('X')){
+            return true;
+        }else if(this.checkColumn('X')){
+            return this.checkColumn('X');
+        }
+        else return this.checkDiagonal('X');
+    }
+
+    public Boolean isInFavorOfO() {
+        if (this.checkRow('O')){
+            return true;
+        }else if(this.checkColumn('O')){
+            return this.checkColumn('O');
+        }
+        else return this.checkDiagonal('O');
     }
 
     public Boolean isTie() {
