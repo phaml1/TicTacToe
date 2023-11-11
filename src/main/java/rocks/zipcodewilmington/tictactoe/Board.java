@@ -43,12 +43,7 @@ public class Board {
     }
 
     public Boolean isInFavorOfO() {
-        if (this.checkRow('O')){
-            return true;
-        }else if(this.checkColumn('O')){
-            return this.checkColumn('O');
-        }
-        else return this.checkDiagonal('O');
+        return checkRow('O') || checkColumn('O') || checkDiagonal('O');
     }
 
     public Boolean isTie() {
